@@ -30,4 +30,6 @@ public class Datum {
     @JsonProperty("profile_image")
     public String profileImage;
 
+    public Datum() {
+    }
 }
