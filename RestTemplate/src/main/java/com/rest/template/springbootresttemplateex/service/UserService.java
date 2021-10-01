@@ -10,5 +10,5 @@ public interface UserService {
 
     List<User> getAllUsers();
 
-    User addUser(PostUser postUser);
+    String addUser(PostUser postUser);
 }

@@ -1,5 +1,7 @@
 package com.rest.template.springbootresttemplateex.service;
 
+import com.rest.template.springbootresttemplateex.exception.NameNotFoundException;
+import com.rest.template.springbootresttemplateex.exception.UserNotFoundException;
 import com.rest.template.springbootresttemplateex.model.Datum;
 import com.rest.template.springbootresttemplateex.model.PostUser;
 import com.rest.template.springbootresttemplateex.model.User;
@@ -22,7 +24,6 @@ import java.util.List;
 @Slf4j
 public class UserServiceImpl implements UserService
 {
-
 	@Autowired
 	private UserValidation userValidation;
 
@@ -56,14 +57,14 @@ public class UserServiceImpl implements UserService
 	}
 
 	@Override
-	public User addUser(PostUser postUser) {
+	public String addUser(PostUser postUser) {
 
-		String url =baseUrl+listUserUrl;
-		ResponseEntity<User> userResponseEntity = restTemplate.getForEntity(url, User.class);
-		if(userValidation.checkUserValidation("morpheus", "leader")){
-			return userResponseEntity.getBody();
+		if (userValidation.validateUserName("morpheus")
+				&& userValidation.validateUserJob("leader")) {
+			return "Success";
+
 		}
-		return null;
+		return "Not an user";
 	}
 
 }

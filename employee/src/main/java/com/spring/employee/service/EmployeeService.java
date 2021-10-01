@@ -21,7 +21,7 @@ public class EmployeeService{
     public List<Datum> getAllEmployees() throws IOException, FileNotFoundException {
         ObjectMapper objectMapper = new ObjectMapper();
         Datum datum = objectMapper.readValue
-                (new File("src/resources/emp.json"), Datum.class);
+                (new File("src/main/resources/emp.json"), Datum.class);
         if(datum.getEmployeeSalary()>86000 && datum.employeeAge<45){
             return Arrays.asList(datum);
         }

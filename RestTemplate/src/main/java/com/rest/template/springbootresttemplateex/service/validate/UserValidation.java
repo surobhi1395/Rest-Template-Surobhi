@@ -2,20 +2,27 @@ package com.rest.template.springbootresttemplateex.service.validate;
 
 import com.rest.template.springbootresttemplateex.exception.JobNotFoundException;
 import com.rest.template.springbootresttemplateex.exception.NameNotFoundException;
+import com.rest.template.springbootresttemplateex.exception.UserNotFoundException;
 import org.springframework.util.StringUtils;
 
 public class UserValidation {
 
-    public boolean checkUserValidation(String name, String job){
-
-        if(StringUtils.isEmpty(name)){
-            throw new NameNotFoundException("Not a valid name");
+    public boolean validateUserName(String name){
+        if(name.equals("morpheus")){
+            return true;
         }
-        if(StringUtils.isEmpty(job)){
-            throw new JobNotFoundException("Not a valid job");
+       else{
+            throw new UserNotFoundException("Not a valid name");
         }
+    }
 
-        return false;
+    public boolean validateUserJob(String job){
+        if(job.equals("leader")){
+            return true;
+        }
+       else{
+            throw new UserNotFoundException("Not a valid job");
+        }
     }
 
 }
